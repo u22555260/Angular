@@ -1,0 +1,90 @@
+<div class="container mt-4">
+  <h2>Add Client Registration</h2>
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="client_Name" class="form-label">Name</label>
+      <input type="text" class="form-control" id="client_Name" formControlName="client_Name" required>
+      <div *ngIf="clientForm.controls.client_Name.errors?.required && clientForm.controls.client_Name.touched" class="text-danger">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_Surname" class="form-label">Surname</label>
+      <input type="text" class="form-control" id="client_Surname" formControlName="client_Surname" required>
+      <div *ngIf="clientForm.controls.client_Surname.errors?.required && clientForm.controls.client_Surname.touched" class="text-danger">
+        Surname is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_Email_Address" class="form-label">Email Address</label>
+      <input type="email" class="form-control" id="client_Email_Address" formControlName="client_Email_Address" required>
+      <div *ngIf="clientForm.controls.client_Email_Address.errors?.required && clientForm.controls.client_Email_Address.touched" class="text-danger">
+        Email Address is required.
+      </div>
+      <div *ngIf="clientForm.controls.client_Email_Address.errors?.email && clientForm.controls.client_Email_Address.touched" class="text-danger">
+        Invalid Email Address.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_Contact_Number" class="form-label">Contact Number</label>
+      <input type="tel" class="form-control" id="client_Contact_Number" formControlName="client_Contact_Number" required>
+      <div *ngIf="clientForm.controls.client_Contact_Number.errors?.required && clientForm.controls.client_Contact_Number.touched" class="text-danger">
+        Contact Number is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_ID_Number" class="form-label">ID Number</label>
+      <input type="number" class="form-control" id="client_ID_Number" formControlName="client_ID_Number" required>
+      <div *ngIf="clientForm.controls.client_ID_Number.errors?.required && clientForm.controls.client_ID_Number.touched" class="text-danger">
+        ID Number is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="title" class="form-label">Title</label>
+      <select class="form-select" id="title" formControlName="title" required>
+        <option value="" disabled>Select Title</option>
+        <option value="Mr">Mr</option>
+        <option value="Mrs">Mrs</option>
+        <option value="Miss">Miss</option>
+        <option value="Ms">Ms</option>
+        <option value="Dr">Dr</option>
+      </select>
+      <div *ngIf="clientForm.controls.title.errors?.required && clientForm.controls.title.touched" class="text-danger">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_Address" class="form-label">Client Address</label>
+      <input type="text" class="form-control" id="client_Address" formControlName="client_Address" required>
+      <div *ngIf="clientForm.controls.client_Address.errors?.required && clientForm.controls.client_Address.touched" class="text-danger">
+        Address is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="client_Gender" class="form-label">Gender</label>
+      <select class="form-select" id="client_Gender" formControlName="client_Gender" required>
+        <option value="" disabled>Select Gender</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+        <option value="Other">Other</option>
+      </select>
+      <div *ngIf="clientForm.controls.client_Gender.errors?.required && clientForm.controls.client_Gender.touched" class="text-danger">
+        Gender is required.
+      </div>
+    </div>
+
+
+      <button type="submit" class="btn btn-success" [disabled]="clientForm.invalid">Save</button>
+      <button type="reset" class="btn btn-warning m-sm-2" >Clear</button>
+      <button type="button" class="btn btn-danger m-sm-2" routerLink="/courses">Cancel</button>
+
+    </form>
+   </div>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <app-admin-sidebar></app-admin-sidebar>
+    
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+
+                </div>
+                <p style=" font-size: 35px;">Create Order</p>
+
+                <div class="user">
+                    <img  alt="">
+                </div>
+            </div>
+
+        <form [formGroup]="orderForm" (ngSubmit)="createOrder()">
+            <div class="order-form">
+                <h2>Create Order</h2>
+                
+                <label for="order-description">Order Description</label>
+                <input type="text" id="order-description" name="order-description" formControlName="order_Description" placeholder="Enter order description">
+                <small *ngIf="orderForm.controls['order_Description'].dirty && orderForm.hasError('required', 'order_Description')" class="text-danger">*Order Desc. Is Required</small>
+                
+                <label for="order-date">Order Date</label>
+                <input type="datetime-local" id="order-date" name="order-date" formControlName="order_Date">
+                
+                <label for="order-status">Order Status</label>
+                <select id="order-status" name="order-status" formControlName="order_Status">
+                    <option value="Completed">Completed</option>
+                    <option value="In Progress">In Progress</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Returned">Returned</option>
+                </select>
+                
+                <label for="supplier">Supplier</label>
+                <select id="supplier" name="supplier" formControlName="supplierId">
+                    <option *ngFor="let supplier of suppliers" [value]="supplier.supplierId">{{ supplier.supplier_Name }}</option>
+                </select>
+
+                
+                <label for="order-description" hidden="hidden">Employee Id</label>
+                <input type="text" id="order-description" name="order-description" formControlName="employeeId" placeholder="1" hidden="hidden">
+
+                <label for="order-description" hidden="hidden">Shift Id</label>
+                <input type="text" id="order-description" name="order-description" formControlName="shiftId" placeholder="1" hidden="hidden">
+
+                <button type="submit" class="btn btn-success" >Submit</button>
+                <br>
+                <br>
+                <button type="button" class="btn btn-success" routerLink="/orders">Cancel</button>
+            </div>
+        </form>
+    
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

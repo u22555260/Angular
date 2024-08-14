@@ -1,0 +1,359 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/src/assets/css/style.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+
+
+                </div>
+                <p style=" font-size: 35px;">Manager Dashboard</p>
+
+                <div class="search">
+                    <label>
+                        <input type="text" placeholder="Search here">
+
+                    </label>
+                </div>
+
+                <div class="user">
+                    <img alt="">
+                </div>
+            </div>
+
+            <!-- ======================= Cards ================== -->
+            <div class="cardBox">
+                <div class="card">
+                    <div>
+                        <div class="numbers">1,504</div>
+                        <div class="cardName">Daily Views</div>
+                    </div>
+
+                    <div class="iconBx">
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">80</div>
+                        <div class="cardName">Sales</div>
+                    </div>
+
+                    <div class="iconBx">
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">284</div>
+                        <div class="cardName">Comments</div>
+                    </div>
+
+                    <div class="iconBx">
+
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div>
+                        <div class="numbers">$7,842</div>
+                        <div class="cardName">Earning</div>
+                    </div>
+
+                    <div class="iconBx">
+
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="details">
+                <div class="recentOrders">
+                    <div class="cardHeader">
+                        <h2>Recent Orders</h2>
+                        <a href="#" class="btn">View All</a>
+                    </div>
+
+                    <table>
+                        <thead>
+                            <tr>
+                                <td>Order Description</td>
+                                <td>Order Price</td>
+                                <td>Order Date</td>
+                                <td>Created By</td>
+                                <td>Shift</td>
+                                <td>Supplier</td>
+                                <td>Status</td>
+                                <td>Modify</td>
+                                <td>Deletion</td>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>Order of Handy Andy, Cloths & Pine Gel</td>
+                                <td>R1200.50</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Shoprite</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                                <td>
+                                    <a href="/Orders/update-order.html" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Food From Butchery</td>
+                                <td>R840</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Butchery Boys</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <a href="/Orders/update-order.html" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Bedsheets</td>
+                                <td>R270</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Mr. Price Home</td>
+                                <td><span class="status inProgress">On Route</span></td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Forks</td>
+                                <td>R100</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Cutlery Girlz</td>
+                                <td><span class="status return">Returned</span></td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);" onclick="openModal()">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Order of Handy Andy, Cloths & Pine Gel</td>
+                                <td>R1200.50</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Shoprite</td>
+                                <td><span class="status delivered">Delivered</span></td>
+                                <td>
+                                    <a href="/Orders/update-order.html" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Food From Butchery</td>
+                                <td>R840</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Butchery Boys</td>
+                                <td><span class="status pending">Pending</span></td>
+                                <td>
+                                    <a href="/Orders/update-order.html" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Bedsheets</td>
+                                <td>R270</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Mr. Price Home</td>
+                                <td><span class="status inProgress">On Route</span></td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);">Cancel</a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td>Forks</td>
+                                <td>R100</td>
+                                <td>05/11/2023</td>
+                                <td>Joy, Admin By Day, Security By Night</td>
+                                <td>8AM Shift</td>
+                                <td>Cutlery Girlz</td>
+                                <td><span class="status return">Returned</span></td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(45, 21, 179);">Update</a>
+                                </td>
+                                <td>
+                                    <a href="#" class="btn" style="background-color: rgb(199, 24, 12);" onclick="openModal()">Cancel</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- ================= New Customers ================ -->
+                <div class="recentCustomers">
+                    <div class="cardHeader">
+                        <h2>Quick Management</h2>
+                    </div>
+
+                    <table>
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Events/event-type.html"><span class="btn">Event Type</span> <br></a>
+                            </td>
+                        </tr> 
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Orders/receive-order.html"><span class="btn">Capture Delivered Supplier Order</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Suppliers/supplier-type.html"><span class="btn">Supplier Type Management</span><br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/stock-take.html"><span class="btn">Stock Take</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/inventory-category.html"><span class="btn">Inventory Category</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/inventory-type.html"><span class="btn">Inventory Type</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/inspection-item.html"><span class="btn">Inspection Item</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/write-off.html"><span class="btn">Write Off</span> <br></a>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td width="60px">
+                                <span class="icon">
+
+                                </span>
+                            </td>
+                            <td>
+                                <a href="/Inventory/product-management.html"><span class="btn">Product Management</span> <br></a>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

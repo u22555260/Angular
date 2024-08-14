@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="main">
+    <div class="topbar">
+        <div class="toggle">
+
+        </div>
+        <p style=" font-size: 35px;">Events Homepage</p>
+
+        <div class="search">
+            <label>
+                <input type="text" [(ngModel)]="searchText" placeholder="Search Events">
+            </label>
+        </div>
+
+        <div class="user">
+            <img alt="">
+        </div>
+    </div>
+
+
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Events</h2>
+                <a href="/event_booking/add" class="btn">Create Event Booking</a>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <td>Event Date</td>
+                        <td>Event Price</td>
+                        <td>Start Time</td>
+                        <td>End Time</td>
+                        <td>Event Status</td>
+                        <td>Allergy Description</td>
+                        <td>Event Type</td>
+                        <td>Client Name</td>
+                        <td>Handled By</td>
+                        <td>Shift</td>
+                        <td>Modify</td>
+                        <td>Deletion</td>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr *ngFor="let event of events | filter: searchText">
+                        <td>{{ event.event_Date | date}}</td>
+                        <td>{{ event.event_Price | currency: 'R':'symbol' }}</td>
+                        <td>{{ event.start_Time }}</td>
+                        <td>{{ event.end_Time }}</td>
+                        <td><span class="status delivered">{{ event.event_Status }}</span></td>
+                        <td>{{ event.allergy_Description }}</td>
+                        <td>{{ event.event_Type }}</td>
+                        <td>{{ event.client }}</td>
+                        <td>{{ event.employee }}</td>
+                        <td>{{ event.shift_Date | date }}</td>
+                        <td>
+                            <a href="update-event-booking.html" class="btn" style="background-color: rgb(45, 21, 179);" [routerLink]="['/update-event-booking', event.eventId]">Update</a>
+                        </td>
+                        <td>
+                            <a class="btn" style="background-color: rgb(199, 24, 12);" (click)="deleteEventBooking(event.eventId)">Delete</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="recentCustomers">
+            <div class="cardHeader">
+                <h2>Event Management</h2>
+            </div>
+
+            <table>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/event_type"><span class="btn">Event Type</span> <br></a>
+                    </td>
+                </tr>         
+
+            </table>
+        </div>
+        
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <h2 class="heading">Are You Sure You Want To Delete This Event Booking?</h2>
+                <br>
+                <button class="btn" onclick="confirmAction()" style="background-color: green;">Confirm</button>
+                <button class="btn" onclick="closeModal()">Cancel</button>
+                <br>
+            </div>
+        </div>
+        
+
+</div>

@@ -1,0 +1,32 @@
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container mt-4">
+    <h2>Add Inventory Type</h2>
+    <form [formGroup]="inventoryTypeForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="inventory_Type_Name" class="form-label">Inventory Type Name</label>
+        <input type="text" class="form-control" id="inventory_Type_Name" formControlName="inventory_Type_Name" required>
+        <div *ngIf="inventoryTypeForm.controls.inventory_Type_Name.errors?.required && inventoryTypeForm.controls.inventory_Type_Name.touched" class="text-danger">
+          Inventory Type Name is required.
+        </div>
+      </div>
+
+    
+
+      <div class="mb-3">
+        <label for="inventory_Type_Description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="inventory_Type_Description" formControlName="inventory_Type_Description" required>
+        <div *ngIf="inventoryTypeForm.controls.inventory_Type_Description.errors?.required && inventoryTypeForm.controls.inventory_Type_Description.touched" class="text-danger">
+            Inventory Type Description is required.
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success" [disabled]="inventoryTypeForm.invalid">Add Inventory Type</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/inventory_type">Cancel</button>
+
+    </form>
+   </div>

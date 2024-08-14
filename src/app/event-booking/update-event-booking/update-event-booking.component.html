@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container">
+
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+
+            </div>
+            <p style=" font-size: 35px;">Update Event Booking</p>
+
+            <div class="user">
+                <img alt="">
+            </div>
+        </div>
+
+        <form [formGroup]="eventForm" (ngSubmit)="onSubmit()">
+            <div class="order-form">
+                <h2>Update Event Details</h2>
+                
+                <label for="order-date">Event Date</label>
+                <input type="datetime-local" id="order-date" name="Event-Date" formControlName="event_Date">
+
+                <label for="order-date">Event Price</label>
+                <input type="number" id="order-date" name="Price" formControlName="event_Price">
+                
+                <label for="order-date">Start Time</label>
+                <input type="datetime-local" id="order-date" name="Start-Time" formControlName="start_Time">
+                
+                <label for="order-date">End Time</label>
+                <input type="datetime-local" id="order-date" name="End-Time" formControlName="end_Time">
+                
+                <label for="supplier">Event Status</label>
+                <select id="supplier" name="supplier" formControlName="event_Status">
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="Scheduled">Scheduled</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+
+                <label for="order-description">Allergy Description</label>
+                <input type="text" id="order-description" name="order-description" placeholder="Allergy Description" formControlName="allergy_Description">
+        
+                <label for="supplier">Event Type</label>
+                <select id="supplier" name="supplier" formControlName="eventTypeId">
+                    <option *ngFor="let eventType of eventTypes" [value]="eventType.eventTypeId">{{ eventType.event_Description }}</option>
+                </select>
+
+                <label for="supplier">Client Name</label>
+                <select id="supplier" name="supplier" formControlName="clientId">
+                    <option *ngFor="let client of clients" [value]="client.clientId">{{ client.client_Name + " " +client.client_Surname }}</option>
+                </select>
+
+                <label for="order-description" hidden="hidden">Employee Id</label>
+                <input type="text" id="order-description" name="order-description" formControlName="employeeId" placeholder="1" hidden="hidden">
+
+                <label for="order-description" hidden="hidden">Shift Id</label>
+                <input type="text" id="order-description" name="order-description" formControlName="shiftId" placeholder="1" hidden="hidden">
+
+
+                <input type="submit" value="Update Event Booking">
+                <input type="button" value="Cancel" style="background-color: red;" routerLink="/event_booking">
+            </div>
+    </form>
+
+    </div>
+</div>

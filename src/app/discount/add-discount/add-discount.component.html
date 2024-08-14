@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+        <app-admin-sidebar></app-admin-sidebar>
+    
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+
+                </div>
+                <p style=" font-size: 35px;">Create Discount</p>
+
+                <div class="user">
+                    <img  alt="">
+                </div>
+            </div>
+
+
+
+            <div class="order-form">
+                <h2>Generate Discount Code</h2>
+                <label for="order-status">Discount Percentage</label>
+                <select id="discountAmount" name="order-status" [(ngModel)]="discountAmount"> 
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                    <option value="20">20</option>
+                </select>
+
+        <form [formGroup]="discountForm" (ngSubmit)="generateDiscountCode()">
+                <label for="order-description">Discount Name</label>
+                <input type="text" id="order-description" name="order-description" formControlName="discount_Name" placeholder="Enter Discount Name">
+                <small *ngIf="discountForm.controls['discount_Name'].dirty && discountForm.hasError('required', 'discount_Name')" class="text-danger">*Name Is Required</small>
+
+                <label for="order-description" hidden>Discount Code</label>
+                <input type="text" id="order-description" name="order-description" formControlName="discount_Code" placeholder="Enter Discount Name" hidden>
+
+                <label for="order-description" hidden>Discount Percentage</label>
+                <input type="number" id="order-description" formControlName="discount_Percenatage" hidden>
+                
+                <label for="order-date">Start Date</label>
+                <input type="datetime-local" id="order-date" name="order-date" formControlName="start_Date">
+
+                <label for="order-date">End Date</label>
+                <input type="datetime-local" id="order-date" name="order-date" formControlName="end_Date">
+
+                <label for="is-active" hidden>Active</label>
+                <input type="checkbox" id="is-active" formControlName="is_Active" hidden>
+
+                <button type="submit" class="btn btn-success" >Submit</button>
+                <br>
+                <br>
+                <button type="button" class="btn btn-success" routerLink="/orders">Cancel</button>
+        </form>
+
+            </div>
+
+    
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

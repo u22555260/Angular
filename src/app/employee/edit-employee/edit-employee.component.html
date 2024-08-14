@@ -1,0 +1,33 @@
+<p>edit-employee works!</p>
+
+<div class="container mt-4">
+    <h2>Edit Employee</h2>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+        <div *ngIf="employeeForm.controls.name.errors?.required && employeeForm.controls.name.touched" class="text-danger">
+          Name is required.
+        </div>
+      
+      </div>
+      <div class="mb-3">
+        <label for="surname" class="form-label">surname </label>
+        <input type="text" class="form-control" id="surname" formControlName="surname" required>
+        <div *ngIf="employeeForm.controls.surname.errors?.required && employeeForm.controls.surname.touched" class="text-danger">
+            surname is required.
+        </div>
+        
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">address</label>
+        <textarea class="form-control" id="address" formControlName="address" required></textarea>
+        <div *ngIf="employeeForm.controls.address.errors?.required && employeeForm.controls.address.touched" class="text-danger">
+            address is required.
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success" [disabled]="employeeForm.invalid">Edit Course</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/courses">Cancel</button>
+
+    </form>
+   </div>

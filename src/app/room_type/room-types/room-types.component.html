@@ -1,0 +1,34 @@
+<div class="container mt-4">
+  <br>
+  <h3>Room Type</h3>
+  <div class="form-outline mt-3">
+    <input type="search" [(ngModel)]="searchText" id="form1" class="form-control" placeholder="Search Room Type">
+  </div>
+  <br>
+  <button class="btn btn-secondary" routerLink="/room_type/add">Add Room Type</button>
+  <br>
+  <br>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Room Type Size</th>
+          <th>Room Capacity</th>
+          <th>Room Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roomType of roomTypes | filter: searchText">
+          <td>{{ roomType.room_Size }}</td>
+          <td>{{ roomType.room_Type_Capacity }}</td>
+          <td>{{ roomType.room_Type_Description }}</td>
+          <td>
+            <div class="button-container">
+              <a href="#" class="btn btn-danger btn-sm" (click)="deleteRoomType(roomType.id)">Delete Room Type</a>
+              <a (click)="editRoomType(roomType.id)" class="btn btn-primary btn-sm mx-2">Edit Room Type</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

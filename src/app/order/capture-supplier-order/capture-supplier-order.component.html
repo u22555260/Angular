@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <!-- =============== Navigation ================ -->
+    <div class="container">
+    <app-menlyn-navbar></app-menlyn-navbar>
+    <app-admin-sidebar></app-admin-sidebar>
+
+        <!-- ========================= Main ==================== -->
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                </div>
+                <p style=" font-size: 35px;">Receive Order</p>
+
+                <div class="user">
+                    <img alt="">
+                </div>
+            </div>
+
+
+            <form [formGroup]="receiveForm" (ngSubmit)="receiveOrder()">
+                <div class="order-form">
+                    <h2>Received Order Details</h2>
+                    
+                    <label for="order-date">Received Order Date</label>
+                    <input type="datetime-local" id="order-date" name="order-date" formControlName="received_Order_Date">
+                    
+                    <label for="order-status">Received Status</label>
+                    <select id="order-status" name="order-status" formControlName="received_Status">
+                        <option value="Complete">Complete</option>
+                        <option value="Late">Late</option>
+                        <option value="Items Missing">Items Missing</option>
+                        <option value="Items Damaged">Items Damaged</option>
+                    </select>
+                    
+                    <label for="order-description" hidden="hidden">Received By</label>
+                    <input type="text" id="order-description" name="order-description" placeholder="Username From Profile" formControlName="received_By" hidden="hidden">
+                    
+            
+                    <input type="submit" value="Confirm">
+                    <input type="submit" value="Cancel" style="background-color: red;">
+                </div>
+            </form>
+    
+        </div>
+    </div>
+
+    <!-- =========== Scripts =========  -->
+    <script src="/assets/js/main.js"></script>
+
+    <!-- ====== ionicons ======= -->
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

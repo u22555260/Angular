@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container">
+
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+            </div>
+            <p style=" font-size: 35px;">Log An Inspection Item</p>
+
+            <div class="user">
+                <img  alt="">
+            </div>
+        </div>
+
+        <form [formGroup]="inspectionForm" (ngSubmit)="onSubmit()">
+            <div class="order-form">
+                    <h2>Inspection Item Details</h2>
+                    
+                    <label for="order-description">Inspection Item Name</label>
+                    <input type="text" id="order-description" name="order-description" placeholder="Enter Inventory Type Name" formControlName="inspection_Item_Name">
+
+                    <label for="order-status">Inspection Item Condition</label>
+                    <select id="order-status" name="order-status" formControlName="inspection_Item_Condition">
+                        <option value="Broken">Broken</option>
+                        <option value="Damaged">Damaged</option>
+                        <option value="Poor">Poor</option>
+                    </select>
+
+                    <label for="supplier">Inventory</label>
+                    <select id="supplier" name="supplier" formControlName="inventoryId">
+                        <option value="active" *ngFor="let inventory of inventories" [value]="inventory.inventoryId">{{ inventory.inventory_Name }}</option>
+                    </select>
+            
+                    <input type="submit" value="Log Inspection Item">
+                    <input type="button" value="Cancel" style="background-color: red;" routerLink="/inspection_item">
+                </div>
+        </form>
+
+    </div>
+</div>

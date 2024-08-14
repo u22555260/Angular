@@ -1,0 +1,29 @@
+<div class="container mt-4">
+    <h2>Edit Product Type</h2>
+    <form [formGroup]="productTypeForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="inventory_Type_Name" class="form-label">Product Type</label>
+        <input type="text" class="form-control" id="inventory_Type_Name" formControlName="inventory_Type_Name" required>
+        <div *ngIf="productTypeForm.controls.inventory_Type_Name.errors?.required && productTypeForm.controls.inventory_Type_Name.touched" class="text-danger">
+            Product Type Name is required.
+        </div>
+      </div>
+
+    
+
+      <div class="mb-3">
+        <label for="inventory_Type_Description" class="form-label">Description</label>
+        <input type="text" class="form-control" id="inventory_Type_Description" formControlName="inventory_Type_Description" required>
+        <div *ngIf="productTypeForm.controls.inventory_Type_Description.errors?.required && productTypeForm.controls.inventory_Type_Description.touched" class="text-danger">
+            ProductType Description is required.
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success" [disabled]="productTypeForm.invalid">Edit Product Type</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/inventory_type">Cancel</button>
+
+    </form>
+   </div>

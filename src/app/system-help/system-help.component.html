@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body style="height: 100%; overflow-x: hidden; overflow: hidden;">
+  <h1 class="mainHeading" style="margin-left: 10%; margin-top: 1%;">Help</h1>
+  <br>
+  <div class="card-container" style="display: flex; margin-left: 20%;">
+    <div class="card" style="width: calc(25% - 8px); padding: 10px; border: 1px solid #ccc; border-radius: 7px; color: white; background-color: #023047; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); text-align: center;">
+      <h2>Help Document</h2>
+      <p>A step-by-step guide that will help you navigate the Menlyn Mews system</p>
+      <i class="fa fa-file-pdf-o" style="font-size:24px"></i>
+      <a href="assets/Help doc2.pdf" target="_blank" style="display: block; margin-top: 10px;">Click here to open...</a>
+    </div>
+  </div>
+  <br>
+  <div class="search-panel">
+    <div class="search-container" style="margin-left: 20%; margin-top: 25px;">
+      <div class="search-input" style="display: flex; align-items: center; border: 1px solid #ccc; border-radius: 5px; padding: 5px; background-color: #fff; box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.2); width: 40%;">
+        <i class="fa fa-search" style="color: #555; margin-right: 5px;"></i>
+        <input type="text" [(ngModel)]="searchQuery" (input)="search()" placeholder="Search for a question..." style="border: none; outline: none; flex-grow: 1; padding: 5px; font-size: 16px;">
+      </div>
+    </div>
+    <br>
+    <div class="results-container" style="display: flex; flex-direction: column; max-height: 357px; overflow-y: auto;">
+      <div *ngFor="let result of searchResults" class="result-item" style="border: 1px solid #ccc; border-radius: 5px; padding: 10px; margin-bottom: 10px; background-color: #f8f8f8; width: 75%; margin-left: 20%; margin-top: 10px;">
+        <h3>{{ result.question }}</h3>
+        <p style="color: rgb(69, 69, 69);">{{ result.answer }}</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

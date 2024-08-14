@@ -1,0 +1,45 @@
+<app-standard-navbar></app-standard-navbar>
+<div class="container mt-4">
+    <h3 style="font-weight: bold;">Room Bookings</h3>
+    <div class="form-outline mt-3">
+      <input type="search" [(ngModel)]="searchText" id="form1" class="form-control" placeholder="Search Room Booking">
+    </div>
+    <br>
+    <button class="btn btn-secondary" routerLink="/room_booking/add">Add Room Booking</button>
+    <br>
+    <br>
+    <table class="table table-bordered table-hover">
+      <thead>
+        <tr>
+          <th>Booking Status</th>
+          <th>Booking Price</th>
+          <th>Check In Date</th>
+          <th>Check Out Date</th>
+          <th>Room Description</th>
+          <th>Booking Package</th>
+          <th>Client</th>
+          <th>Discount</th>
+          <th>Modify</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let roomBooking of roomBookings | filter: searchText">
+          <td>{{ roomBooking.booking_Status }}</td>
+          <td>{{ roomBooking.booking_Price | currency: 'R':'symbol'  }}</td>
+          <td>{{ roomBooking.check_In_Date | date }}</td>
+          <td>{{ roomBooking.check_Out_Date | date }}</td>
+          <td>{{ roomBooking.room_Desc }}</td>
+          <td>{{ roomBooking.booking_Package || "None" }}</td>
+          <td>{{ roomBooking.client }}</td>
+          <td>{{ roomBooking.discount || "None"}}</td>
+          <td>
+            <div class="button-container">
+              <a (click)="editRoomBooking(roomBooking.roomBookingId)" class="btn btn-primary btn-sm mx-2">Edit</a>
+              <br>
+              <a class="btn btn-danger btn-sm" (click)="deleteRoomBooking(roomBooking.roomBookingId)">Delete</a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>

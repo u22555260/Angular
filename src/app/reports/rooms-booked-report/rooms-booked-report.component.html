@@ -1,0 +1,35 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-admin-sidebar></app-admin-sidebar>
+
+<body class="container">
+    <h2>Rooms Information</h2>      
+    <br>
+    <label for="datePicker">Choose a date: </label>
+    <input id="datePicker" type="date" (change)="onDateChange($event)">
+    <div id="reportTable">
+        <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Room Number</th>
+                    <th>Number of Times Booked</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of roomsBookedData">
+                    <td>Room {{ item.room_Number }}</td>
+                    <td>{{ item.number_Of_Times_Booked }}</td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <button class="btn btn-primary" (click)="generatePDF()">Generate Rooms Report</button>
+    <br>
+    <button class="btn btn-danger" routerLink="/reports">Back</button>
+</body>

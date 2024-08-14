@@ -1,0 +1,68 @@
+<app-standard-navbar></app-standard-navbar>
+
+<div class="container mt-4">
+    <h2>Room Booking</h2>
+    <form [formGroup]="roomBookingForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="booking_Price" class="form-label">Price</label>
+        <input type="number" class="form-control" id="booking_Price" formControlName="booking_Price" required>
+        <div *ngIf="roomBookingForm.controls.booking_Price.errors?.required && roomBookingForm.controls.booking_Price.touched" class="text-danger">
+          Price is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="booking_Status" class="form-label">Booking_Status</label>
+        <input type="text" class="form-control" id="booking_Status" formControlName="booking_Status" required>
+        <div *ngIf="roomBookingForm.controls.booking_Status.errors?.required && roomBookingForm.controls.booking_Status.touched" class="text-danger">
+            Booking Status is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="check_In_Date" class="form-label">Check-In Date</label>
+        <input type="datetime-local" class="form-control" id="check_In_Date" formControlName="check_In_Date" required>
+        <div *ngIf="roomBookingForm.controls.check_In_Date.errors?.required && roomBookingForm.controls.check_In_Date.touched" class="text-danger">
+            Check-In Date is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="check_Out_Date" class="form-label">Check-Out Date Is Required</label>
+        <input type="datetime-local" class="form-control" id="check_Out_Date" formControlName="check_Out_Date" required>
+        <div *ngIf="roomBookingForm.controls.check_Out_Date.errors?.required && roomBookingForm.controls.check_Out_Date.touched" class="text-danger">
+            Check-Out Date is required.
+        </div>
+      </div>
+
+      <div class="mb-3" >
+        <label for="supplier">Client</label>
+        <select id="supplier" name="supplier" formControlName="clientId">
+            <option *ngFor="let client of clients" [value]="client.clientId">{{ client.client_Name  }}</option>
+        </select>
+      </div>
+
+      
+      <div class="mb-3">
+        <label for="supplier">Rooms</label>
+        <select id="supplier" name="supplier" formControlName="roomId">
+            <option *ngFor="let room of rooms" [value]="room.roomId">{{ room.room_Description }}</option>
+        </select>
+      </div>
+
+      <label for="room_Type_Description" class="form-label" hidden>Room Type Description</label>
+      <input type="number" class="form-control" id="room_Type_Description" formControlName="bookingPackageId" required hidden>
+
+      <label for="room_Type_Description" class="form-label" hidden>Room Type Description</label>
+      <input type="number" class="form-control" id="room_Type_Description" formControlName="discountId" required hidden>
+
+      
+      <br>
+      <button type="submit" class="btn btn-success">Make Room Booking</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/room_booking">Cancel</button>
+
+    </form>
+   </div>

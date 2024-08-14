@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container">
+
+
+  <!-- ========================= Main ==================== -->
+  <div class="main">
+      <div class="topbar">
+          <div class="toggle">
+
+          </div>
+          <p style=" font-size: 35px;">VAT Homepage</p>
+
+
+          <div class="user">
+              <img  alt="">
+          </div>
+      </div>
+
+
+      <div class="cardBox" style="width: 1200px;">
+          <div class="card" *ngFor="let vat of vats | filter: searchText">
+              <div>
+                  <div class="numbers">{{ vat.vaT_Amount }}%</div>
+                  <h3>Last Updated: <span style="color: burlywood;">{{ vat.last_Updated | date }}</span></h3>
+                  <div class="cardName"><a class="btn" style="background-color: rgb(45, 21, 179);" [routerLink]="['/update-vat', vat.vatId]">Update</a></div>
+              </div>
+
+              <div class="iconBx">
+              </div>
+          </div> 
+
+      </div>
+
+          <div id="myModal" class="modal">
+              <div class="modal-content">
+                  <h2 class="heading">Are You Sure You Want To Delete This Inventory Type?</h2>
+                  <br>
+                  <button class="btn" onclick="confirmAction()" style="background-color: green;">Confirm</button>
+                  <button class="btn" onclick="closeModal()">Cancel</button>
+                  <br>
+              </div>
+          </div>
+          
+
+</div>
+

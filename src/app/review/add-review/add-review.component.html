@@ -1,0 +1,32 @@
+<div class="container mt-4">
+  <h2>Add Review Form</h2>
+  <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+
+    <div class="mb-3">
+      <label for="review_Status" class="form-label">review_Status</label>
+      <input type="text" class="form-control" id="review_Status" formControlName="review_Status" required>
+      <div *ngIf="reviewForm.controls.review_Status.errors?.required && reviewForm.controls.review_Status.touched" class="text-danger">
+        Name is required.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="review_Rating" class="form-label">review_Rating</label>
+      <input type="text" class="form-control" id="review_Rating" formControlName="review_Rating" required>
+      <div *ngIf="reviewForm.controls.review_Rating.errors?.required && reviewForm.controls.review_Rating.touched" class="text-danger">
+        Rating is required. should be between 1 - 5
+      </div>
+    </div>
+
+
+    <div class="mb-3">
+      <label for="review_Description" class="form-label">review_Description</label>
+      <input type="text" class="form-control" id="review_Description" formControlName="review_Description" required>
+      <div *ngIf="reviewForm.controls.review_Description.errors?.required && reviewForm.controls.review_Description.touched" class="text-danger">
+        Desc. is required.
+      </div>
+    </div>
+
+
+
+<button type="submit" class="btn btn-primary">Submit</button>

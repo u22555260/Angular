@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-admin-sidebar></app-admin-sidebar>
+
+<body class="container">
+    <h2>Review Report Page</h2>
+
+    <br>
+    <br>
+    <label for="datePicker">Choose a date: </label>
+    <input id="datePicker" type="date" (change)="onDateChange($event)">
+
+      <br>
+    <div id="reportTable">
+
+        <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>Review Ratings &#9733;</th>
+                    <th>Review Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of reviewData1">
+                    <td>{{ item.review_Rating }} Stars</td>
+                    <td>{{ item.review_Description }}</td>
+                </tr>
+                </tbody>
+            </table>
+    </div>
+    <button class="btn btn-primary" (click)="generatePDF()">Generate Review Report</button>
+    <br>
+    <button class="btn btn-danger" routerLink="/reports">Back</button>
+</body>

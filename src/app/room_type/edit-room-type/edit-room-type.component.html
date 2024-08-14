@@ -1,0 +1,40 @@
+<p>edit-room-type works!</p>
+
+<div class="container mt-4">
+    <h2>Room Type</h2>
+    <form [formGroup]="roomTypeForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="room_Type_Capacity" class="form-label">Room Type Capacity</label>
+        <input type="number" class="form-control" id="room_Type_Capacity" formControlName="room_Type_Capacity" required>
+        <div *ngIf="roomTypeForm.controls.room_Type_Capacity.errors?.required && roomTypeForm.controls.room_Type_Capacity.touched" class="text-danger">
+          Room Type Capacity is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="room_Size" class="form-label">Room Size</label>
+        <input type="text" class="form-control" id="room_Size" formControlName="room_Size" required>
+        <div *ngIf="roomTypeForm.controls.room_Size.errors?.required && roomTypeForm.controls.room_Size.touched" class="text-danger">
+          Room Size is required.
+        </div>
+      </div>
+
+    
+
+      <div class="mb-3">
+        <label for="room_Type_Description" class="form-label">Room Type Description</label>
+        <input type="text" class="form-control" id="room_Type_Description" formControlName="room_Type_Description" required>
+        <div *ngIf="roomTypeForm.controls.room_Type_Description.errors?.required && roomTypeForm.controls.room_Type_Description.touched" class="text-danger">
+          Room Type Description is required.
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success" [disabled]="roomTypeForm.invalid">Edit Room Type</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/inventory">Cancel</button>
+
+    </form>
+   </div>

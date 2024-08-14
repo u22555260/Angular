@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- name of establishment-->
+    <title>Menlyn Mews Guest House</title>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrxpqO9CqMqzcKtiZgX2OY4Pl1VVymJr0&callback=myMap&libraries=maps,marker&v=beta"></script>
+
+
+</head>
+
+<body>
+
+    <div id="googleMap" style="width:100%;height:500px;"></div>
+
+    <script>
+        function myMap() {
+          var myCenter = new google.maps.LatLng(-25.7566, 28.1914);
+          var mapOptions = {
+            center: myCenter,
+            zoom: 12,
+            scrollwheel: false,
+            draggable: true,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          };
+          var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+    
+          var marker = new google.maps.Marker({
+            position: myCenter,
+            map: map
+          });
+    
+          // InfoWindow content
+          var contentString = '<div id="content">' +
+            '<h1 id="firstHeading" class="firstHeading">Menlyn Mews</h1>' +
+            '</div>';
+    
+          var infowindow = new google.maps.InfoWindow({
+            content: contentString
+          });
+    
+          // Show InfoWindow when marker is clicked
+          marker.addListener('click', function() {
+            infowindow.open(map, marker);
+          });
+        }
+      </script>
+</body>
+

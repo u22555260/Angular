@@ -1,0 +1,32 @@
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container mt-4">
+    <h2>Edit Inventory Category</h2>
+    <form [formGroup]="productCategoryForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="inventory_Category_Name" class="form-label">Inventory Category</label>
+        <input type="text" class="form-control" id="inventory_Category_Name" formControlName="inventory_Category_Name" required>
+        <div *ngIf="productCategoryForm.controls.inventory_Category_Name.errors?.required && productCategoryForm.controls.inventory_Category_Name.touched" class="text-danger">
+          Inventory Category Name is required.
+        </div>
+      </div>
+
+    
+
+      <div class="mb-3">
+        <label for="inventory_Category_Description" class="form-label">Inventory Category Description</label>
+        <input type="text" class="form-control" id="inventory_Category_Description" formControlName="inventory_Category_Description" required>
+        <div *ngIf="productCategoryForm.controls.inventory_Category_Description.errors?.required && productCategoryForm.controls.inventory_Category_Description.touched" class="text-danger">
+            Inventory Category Description is required.
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success" [disabled]="productCategoryForm.invalid">Edit Inventory Category</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/inventory_category">Cancel</button>
+
+    </form>
+   </div>

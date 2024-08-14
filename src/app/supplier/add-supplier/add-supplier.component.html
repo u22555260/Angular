@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-menlyn-navbar></app-menlyn-navbar>
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="container">
+        <div class="main">
+            <div class="topbar">
+                <div class="toggle">
+                </div>
+                <p style=" font-size: 35px;" routerLink="/add-supplier">Add Supplier</p>
+
+                <div class="user">
+                </div>
+            </div>
+
+            <form [formGroup]="supplierForm" (ngSubmit)="addSupplier()">
+            <div class="order-form">
+                <h2>New Supplier Details</h2>
+                
+                <label for="order-description">Supplier Name</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Name" formControlName="supplier_Name">
+                
+                <label for="order-description">Supplier Address Line 1</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Address Line 1" formControlName="supplier_Address_Line_1">
+
+                <label for="order-description">Supplier Address Line 2</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Address Line 2" formControlName="supplier_Address_Line_2">
+
+                <label for="order-description">Supplier Email</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Email" formControlName="supplier_Email">
+
+                <label for="order-description">Supplier Contact Number</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Contact Number" formControlName="supplier_Contact_Number">
+
+                <label for="order-description">Supplier Representative Name</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Representative Name" formControlName="supplier_Rep_Name">
+
+                <label for="order-description">Supplier Representative Surname</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Representative Surname" formControlName="supplier_Rep_Surname">
+
+                <label for="order-description">Supplier Representative Contact Number</label>
+                <input type="text"  name="order-description" placeholder="Enter Rep Contact Number" formControlName="supplier_Rep_Contact_Number">
+
+                <label for="order-description">Supplier Representative Email</label>
+                <input type="text"  name="order-description" placeholder="Enter Rep Email" formControlName="supplier_Rep_Email">
+
+                <label for="order-description">Supplier City</label>
+                <input type="text"  name="order-description" placeholder="Enter Supplier Address Line 1" formControlName="city">
+
+                <label for="order-status">Supplier Province</label>
+                <select id="order-status" name="order-status" formControlName="province">
+                    <option value="Gauteng">Gauteng</option>
+                    <option value="Northern Cape">Northern Cape</option>
+                    <option value="Western Cape">Western Cape</option>
+                    <option value="Free State">Free State</option>
+                </select>
+
+                <label for="order-description">Postal Code</label>
+                <input type="text"  name="order-description" placeholder="Enter Postal Code" formControlName="postal_Code">
+
+                <label for="supplier">Supplier Type</label>
+                <select id="supplier" name="supplier" formControlName="supplierTypeId">
+                    <option *ngFor="let supType of supplierTypes" [value]="supType.supplierTypeId">{{ supType.supplier_Type_Description }}</option>
+                </select>
+        
+                <button type="submit" class="btn btn-primary">Add</button>
+                <button type="button" class="btn btn-danger" routerLink="/supplier">Cancel</button>
+            </div>
+        </form>
+    
+        </div>
+    </div>
+</body>

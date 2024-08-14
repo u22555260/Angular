@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-menlyn-navbar></app-menlyn-navbar>
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">]
+            </div>
+            <p style=" font-size: 35px;">Supplier Homepage</p>
+
+            <div class="search">
+                <label>
+                    <input type="text" [(ngModel)]="searchText" placeholder="Search Suppliers">
+                </label>
+            </div>
+
+            <div class="user">
+                <img alt="">
+            </div>
+        </div>
+
+
+        <div class="details">
+            <div class="recentOrders">
+                <div class="cardHeader">
+                    <h2>Suppliers</h2>
+                    <a routerLink="/supplier/add" class="btn">Add Supplier</a>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>Type</td>
+                            <td>Supplier Phone Number</td>
+                            <td>Supplier Email</td>
+                            <td>Representative Full Name</td>
+                            <td>Representative Contact Number</td>
+                            <td>Representative Email</td>
+                            <td>Address Line 1</td>
+                            <td>Address Line 2</td>
+                            <td>City</td>
+                            <td>Province</td>
+                            <td>Postal Code</td>
+                            <td>Modify</td>
+                            <td>Deletion</td>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        <tr *ngFor="let supplier of suppliers | filter:searchText">
+                            <td>{{ supplier.supplier_Name }}</td>
+                            <td>{{ supplier.supplier_Type }}</td>
+                            <td>{{ supplier.supplier_Contact_Number }}</td>
+                            <td>{{ supplier.supplier_Email }}</td>
+                            <td>{{ supplier.supplier_Rep_Name + " " + supplier.supplier_Rep_Surname }}</td>
+                            <td>{{ supplier.supplier_Rep_Contact_Number }}</td>
+                            <td>{{ supplier.supplier_Rep_Email }}</td>
+                            <td>{{ supplier.supplier_Address_Line_1 }}</td>
+                            <td>{{ supplier.supplier_Address_Line_2 || 'None'}}</td>
+                            <td>{{ supplier.city }}</td>
+                            <td>{{ supplier.province }}</td>
+                            <td>{{ supplier.postal_Code }}</td>
+                            <td>
+                                <a  class="btn" style="background-color: rgb(45, 21, 179);" [routerLink]="['/update-supplier', supplier.supplierId]">Update</a>
+                            </td>
+                            <td>
+                                <a class="btn" style="background-color: rgb(199, 24, 12);" (click)="deleteSupplier(supplier.supplierId)">Delete</a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="supplierManagement">
+                <div class="cardHeader">
+                    <h2>Supplier Management</h2>
+                </div>
+
+                <table>
+                    <tr>
+                        <td width="60px">
+                            <span class="icon">
+                            </span>
+                        </td>
+                        <td>
+                            <a routerLink="/supplier_type"><span class="btn">Supplier Type Management</span><br></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+
+</div>

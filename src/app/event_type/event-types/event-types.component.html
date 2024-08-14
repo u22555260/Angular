@@ -1,0 +1,66 @@
+<p>event-types works!</p>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-menlyn-navbar></app-menlyn-navbar>
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container">
+
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+
+            </div>
+            <p style=" font-size: 35px;">Event Type Homepage</p>
+
+            <div class="search">
+                <label>
+                    <input type="text" [(ngModel)]="searchText" placeholder="Search Event Types">
+                </label>
+            </div>
+
+            <div class="user">
+                <img alt="">
+            </div>
+        </div>
+
+
+        <div class="cardBox">
+            <a class="btn-add" routerLink="/event_type/add">+</a>
+            <div class="card" *ngFor="let eventType of eventTypes | filter: searchText" style="width: 290px;">
+                <div>
+                    <div class="numbers">{{ eventType.event_Description }}</div>
+                    <h3>{{ eventType.event_Capacity_Status }}</h3>
+                    <div class="cardName"><a href="update-event-type.html" class="btn" style="background-color: rgb(45, 21, 179);" [routerLink]="['/update-event-type', eventType.eventTypeId]">Update</a></div>
+                    <a class="btn2" style="background-color: rgb(199, 24, 12);" (click)="deleteEventType(eventType.eventTypeId)">Delete</a>
+                </div>
+
+                <div class="iconBx">
+                </div>
+            </div> 
+
+        </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h2 class="heading">Are You Sure You Want To Delete This Event Type?</h2>
+                    <br>
+                    <button class="btn" onclick="confirmAction()" style="background-color: green;">Confirm</button>
+                    <button class="btn" onclick="closeModal()">Cancel</button>
+                    <br>
+                </div>
+            </div>
+            
+
+</div>

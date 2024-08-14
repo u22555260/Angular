@@ -1,0 +1,47 @@
+<div *ngIf="isLoading">
+    <p>Loading...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && errorMessage">
+    <p>{{ errorMessage }}</p>
+  </div>
+
+  <h3> Inventory VM Test 1</h3>
+  
+  <div *ngIf="!isLoading && !errorMessage && inventories.length">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Minimum Stock</th>
+          <th>Maximum Stock</th>
+          <th>Condition</th>
+          <th>Status</th>
+          <th>Type Name</th>
+          <th>Type Description</th>
+          <th>Category Name</th>
+          <th>Category Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let inventory of inventories">
+          <td>{{ inventory.id }}</td>
+          <td>{{ inventory.inventory_Name }}</td>
+          <td>{{ inventory.minimum_Stock }}</td>
+          <td>{{ inventory.maximum_Stock }}</td>
+          <td>{{ inventory.inventory_Condition }}</td>
+          <td>{{ inventory.inventory_Status }}</td>
+          <td>{{ inventory.inventory_Type_Name }}</td>
+          <td>{{ inventory.inventory_Type_Description }}</td>
+          <td>{{ inventory.inventory_Category_Name }}</td>
+          <td>{{ inventory.inventory_Category_Description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
+  <div *ngIf="!isLoading && !errorMessage && inventories.length === 0">
+    <p>No inventories found.</p>
+  </div>
+  

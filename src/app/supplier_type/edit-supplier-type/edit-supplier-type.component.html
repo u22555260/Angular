@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-menlyn-navbar></app-menlyn-navbar>'
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+
+            </div>
+            <p style=" font-size: 35px;">Update Supplier Type</p>
+
+            <div class="user">
+                <img alt="">
+            </div>
+        </div>
+
+        <form [formGroup]="supTypeForm" (ngSubmit)="onSubmit()">
+           <div class="order-form">
+            <h2>Update Supplier Type Details</h2>
+            
+            <label for="order-description">Supplier Type Name</label>
+            <input type="text" id="order-description" name="order-description" placeholder="Enter Supplier Type Name" formControlName="supplier_Type_Description">
+    
+            <input type="submit" value="Update Supplier Type">
+            <input type="submit" value="Cancel" style="background-color: red;" routerLink="/supplier_type">
+        </div>         
+        </form>
+    </div>
+</body>

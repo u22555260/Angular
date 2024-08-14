@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- name of establishment-->
+    <title>Menlyn Mews Guest House</title>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrxpqO9CqMqzcKtiZgX2OY4Pl1VVymJr0&callback=myMap&libraries=maps,marker&v=beta"></script>
+
+
+    
+
+    <!--inline Styling-->
+    <style>
+        body,h1,h2,h3,h4,h5,h6 {font-family: "Raleway", Arial, Helvetica, sans-serif}
+    </style>
+    <!--font styling-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+
+    <!--Icons from font awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!--Styling for -->
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
+    <!-- JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-TdHYJwuMOEA+pFk62CQnQC3XbB03/zfPab4ZlfnBasRd+2Y0V/Z7U3Gu91Gji5Sz" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shCk+5KVcL1r53l3bPvq7xjFO2GqpuuLvRNtF" crossorigin="anonymous"></script>
+
+    
+</head>
+<app-standard-navbar></app-standard-navbar>
+<body>    
+    
+  <!-- Navigation Bar -->
+
+  <!-- Header find a way to change this to boostrap class using chat--> 
+  <header class="w3-display-container w3-content" style="max-width:1500px;">
+    <img class="w3-image" src="./assets/hotel.jpg" alt="The Hotel" style="min-width:1000px" width="1500" height="800">
+    <div class="w3-display-left w3-padding w3-col l6 m8">
+      <div class="w3-container w3-red">
+        <h2><i class="fa fa-bed w3-margin-right"></i>Menlyn Mews</h2>
+      </div>
+      <div class="w3-container w3-white w3-padding-16">
+        <form action="/action_page.php" target="_blank">
+          <div class="w3-row-padding" style="margin:0 -16px;">
+            <div class="w3-half w3-margin-bottom">
+              <label><i class="fa fa-calendar-o"></i> Check In</label>
+              <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckIn" required>
+            </div>
+            <div class="w3-half">
+              <label><i class="fa fa-calendar-o"></i> Check Out</label>
+              <input class="w3-input w3-border" type="text" placeholder="DD MM YYYY" name="CheckOut" required>
+            </div>
+          </div>
+          <div class="w3-row-padding" style="margin:8px -16px;">
+            <div class="w3-half w3-margin-bottom">
+              <label><i class="fa fa-male"></i> Adults</label>
+              <input class="w3-input w3-border" type="number" value="1" name="Adults" min="1" max="6">
+            </div>
+            <div class="w3-half">
+              <label><i class="fa fa-child"></i> Kids</label>
+            <input class="w3-input w3-border" type="number" value="0" name="Kids" min="0" max="6">
+            </div>
+          </div>
+          <button class="w3-button w3-dark-grey" type="submit"><i class="fa fa-search w3-margin-right"></i> Search availability</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  
+  <div class="container" style="max-width:1532px;">
+    <div class="mt-5" id="rooms">
+        <h3>Rooms</h3>
+        <p>Make yourself at home is our slogan. We offer the best beds in the industry. Sleep well and rest well.</p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-3">
+            <label><i class="fa fa-calendar-o"></i> Check In</label>
+            <input class="form-control" type="text" placeholder="DD MM YYYY">
+        </div>
+        <div class="col-md-3">
+            <label><i class="fa fa-calendar-o"></i> Check Out</label>
+            <input class="form-control" type="text" placeholder="DD MM YYYY">
+        </div>
+        <div class="col-md-2">
+            <label><i class="fa fa-male"></i> Adults</label>
+            <input class="form-control" type="number" placeholder="1">
+        </div>
+        <div class="col-md-2">
+            <label><i class="fa fa-child"></i> Kids</label>
+            <input class="form-control" type="number" placeholder="0">
+        </div>
+        <div class="col-md-2">
+            <label><i class="fa fa-search"></i> Search</label>
+            <button class="btn btn-dark btn-block">Search</button>
+        </div>
+    </div>
+</div>
+
+  
+<div class="container-fluid" style="padding: 15px;">
+    <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col">
+            <div class="card">
+                <img src="./assets/room_single.jpg" class="card-img-top" alt="Single Room">
+                <div class="card-body">
+                    <h5 class="card-title">Single Room</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">From $99</h6>
+                    <p class="card-text">Single bed</p>
+                    <p class="card-text">15m<sup>2</sup></p>
+                    <p class="card-text"><i class="fa fa-bath me-2"></i> <i class="fa fa-phone me-2"></i> <i class="fa fa-wifi"></i></p>
+                    <button class="btn btn-dark w-100">Choose Room</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="./assets/room_double.jpg" class="card-img-top" alt="Double Room">
+                <div class="card-body">
+                    <h5 class="card-title">Double Room</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">From $149</h6>
+                    <p class="card-text">Queen-size bed</p>
+                    <p class="card-text">25m<sup>2</sup></p>
+                    <p class="card-text"><i class="fa fa-bath me-2"></i> <i class="fa fa-phone me-2"></i> <i class="fa fa-wifi me-2"></i> <i class="fa fa-tv"></i></p>
+                    <button class="btn btn-dark w-100">Choose Room</button>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card">
+                <img src="./assets/room_deluxe.jpg" class="card-img-top" alt="Deluxe Room">
+                <div class="card-body">
+                    <h5 class="card-title">Deluxe Room</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">From $199</h6>
+                    <p class="card-text">King-size bed</p>
+                    <p class="card-text">40m<sup>2</sup></p>
+                    <p class="card-text"><i class="fa fa-bath me-2"></i> <i class="fa fa-phone me-2"></i> <i class="fa fa-wifi me-2"></i> <i class="fa fa-tv me-2"></i> <i class="fa fa-glass me-2"></i> <i class="fa fa-cutlery"></i></p>
+                    <button class="btn btn-dark w-100">Choose Room</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+  
+<div class="container-fluid" id="about">
+    <div class="row">
+        <div class="col-lg-4">
+            <h3>About</h3>
+            <h6>Our hotel is one of a kind. It is truly amazing. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</h6>
+            <p>We accept: <i class="fa fa-credit-card fa-lg me-2"></i> <i class="fa fa-cc-mastercard fa-lg me-2"></i> <i class="fa fa-cc-amex fa-lg me-2"></i> <i class="fa fa-cc-visa fa-lg me-2"></i><i class="fa fa-cc-paypal fa-lg"></i></p>
+        </div>
+        <div class="col-lg-8">
+            <!-- Image of location/map
+            i Frame because This library is not supported anymore as from Angular V13
+            stack overflow link https://stackoverflow.com/questions/77017543/npm-eresolve-error-when-installing-agm-core-with-angular-16-2-3
+
+            used a JS script instead because Angular Google Maps package can't be installed 
+            because the packages are no longer avialbale on Angular/CLI
+
+             I tried to install the @agm/core package, but I'm getting an npm ERR! ERESOLVE error.
+
+             npm ERR! code ERESOLVE
+              npm ERR! ERESOLVE unable to resolve dependency tree
+              npm ERR! 
+              npm ERR! While resolving: parkbilgi@0.0.0
+              npm ERR! Found: @angular/common@16.2.3
+              npm ERR! node_modules/@angular/common
+              npm ERR!   @angular/common@"^16.1.0" from the root project
+              npm ERR!
+              npm ERR! Could not resolve dependency:
+              npm ERR! peer @angular/common@"^9.1.0 || ^10.0.0" from @agm/core@3.0.0-beta.0
+              npm ERR! node_modules/@agm/core
+              npm ERR!   @agm/core@"*" from the root project
+            -->
+
+            <!-- 
+            <iframe
+            width="100%"
+            height="500"
+            frameborder="0"
+            style="border:0"
+            src="http://127.0.0.1:5500/frontend/src/app/google-maps/google-maps.component.html"
+            
+            allowfullscreen
+          >
+          </iframe>
+          <!-- if may does not run, 
+          got to google-maps folder
+          open gooogle-maps-html
+          right click open with live server
+          copy url and paste it on the source above and refresh
+          it needs to be first hosted on the internet for the error to permanenlty dissapear -->
+
+          <video width="100%" height="500" controls>
+            <source src="assets/video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+
+        </div>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-4"><i class="fa fa-map-marker text-danger"></i></div>
+                <div class="col-md-8">423 Menlyn, Pretoria, SA</div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-4"><i class="fa fa-phone text-danger"></i></div>
+                <div class="col-md-8">Phone: +27 123456789</div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+                <div class="col-md-4"><i class="fa fa-envelope text-danger"></i></div>
+                <div class="col-md-8">Email: BNBConnect mail.com</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <div class="alert alert-danger" role="alert">
+                <i class="fa fa-info text-deep-orange me-2"></i> 
+                On demand, we can offer playstation, babycall, children care, dog equipment, etc.
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h3>Our Hotels</h3>
+        <h6>You can find our hotels anywhere in the world:</h6>
+    </div>
+</div>
+
+    
+   <div class="container-fluid">
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div class="col">
+            <div class="position-relative">
+                <img src="./assets/cinqueterre.jpg" class="img-fluid" alt="Cinque Terre">
+                <div class="position-absolute bottom-0 start-0 p-3 text-white">Cinque Terre</div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="position-relative">
+                        <img src="./assets/newyork2.jpg" class="img-fluid" alt="New York">
+                        <div class="position-absolute bottom-0 start-0 p-3 text-white">New York</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="position-relative">
+                        <img src="./assets/sanfran.jpg" class="img-fluid" alt="San Francisco">
+                        <div class="position-absolute bottom-0 start-0 p-3 text-white">San Francisco</div>
+                    </div>
+                </div>
+            </div>
+            <div class="row row-cols-1 row-cols-md-2 g-4 mt-4">
+                <div class="col">
+                    <div class="position-relative">
+                        <img src="./assets/paris.jpg" class="img-fluid" alt="Pisa">
+                        <div class="position-absolute bottom-0 start-0 p-3 text-white">Pisa</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="position-relative">
+                        <img src="/assets/paris.jpg" class="img-fluid" alt="Paris">
+                        <div class="position-absolute bottom-0 start-0 p-3 text-white">Paris</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+  
+    <div class="w3-container w3-padding-32 w3-black w3-opacity w3-card w3-hover-opacity-off" style="margin:32px 0;">
+      <h2>Get the best offers first!</h2>
+      <p>Join our newsletter.</p>
+      <label>E-mail</label>
+      <input class="w3-input w3-border" type="text" placeholder="Your Email address">
+      <button type="button" class="w3-button w3-red w3-margin-top">Subscribe</button>
+    </div>
+  
+    <div class="w3-container" id="contact">
+      <h2>Contact</h2>
+      <p>If you have any questions, do not hesitate to ask them.</p>
+      <i class="fa fa-map-marker w3-text-red" style="width:30px"></i> Menlyn, SA<br>
+      <i class="fa fa-phone w3-text-red" style="width:30px"></i> Phone: +27 12345678<br>
+      <i class="fa fa-envelope w3-text-red" style="width:30px"> </i> Email: BNBConnect mail.com<br>
+      <form action="/action_page.php" target="_blank">
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Name" required name="Name"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Email" required name="Email"></p>
+        <p><input class="w3-input w3-padding-16 w3-border" type="text" placeholder="Message" required name="Message"></p>
+        <p><button class="w3-button w3-black w3-padding-large" type="submit">SEND MESSAGE</button></p>
+        <a href="./assets/TCs.pdf" download="_blank" style="font-size: larger;">Grievance Procedures</a> <br>
+        <a href="./assets/Menlyn_Mews_Airbnb_Damage_Report_Form.docx" download="_blank" style="font-size: larger;">Menlyn Mews Damage Report Form</a>
+
+      </form>
+    </div>
+  
+  <!-- End page content -->
+  
+  <!-- Footer -->
+  <footer class="w3-padding-32 w3-black w3-center w3-margin-top">
+    <h5>Find Us On</h5>
+    <div class="w3-xlarge w3-padding-16">
+      <i class="fa fa-facebook-official w3-hover-opacity"></i>
+      <i class="fa fa-instagram w3-hover-opacity"></i>
+      <i class="fa fa-snapchat w3-hover-opacity"></i>
+      <i class="fa fa-pinterest-p w3-hover-opacity"></i>
+      <i class="fa fa-twitter w3-hover-opacity"></i>
+      <i class="fa fa-linkedin w3-hover-opacity"></i>
+    </div>
+    <p>Powered by <a href="henry" target="_blank" class="w3-hover-text-green">BNB Connect</a></p>
+  </footer>
+  
+
+
+  <!-- Add Google Maps -->
+  <script>
+    function myMap() {
+      var myCenter = new google.maps.LatLng(-25.7566, 28.1914);
+      var mapOptions = {
+        center: myCenter,
+        zoom: 12,
+        scrollwheel: false,
+        draggable: true,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+      var map = new google.maps.Map(document.getElementById("googleMap"), mapOptions);
+
+      var marker = new google.maps.Marker({
+        position: myCenter,
+        map: map
+      });
+
+      // InfoWindow content
+      var contentString = '<div id="content">' +
+        '<h1 id="firstHeading" class="firstHeading">Menlyn Mews</h1>' +
+        '</div>';
+
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+
+      // Show InfoWindow when marker is clicked
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+      
+
+  <!--
+  To use this code on your website, get a free API key from Google.
+
+  -->
+  <app-reviews></app-reviews>
+  </body>
+</html>

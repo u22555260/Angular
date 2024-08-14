@@ -1,0 +1,36 @@
+<app-standard-navbar></app-standard-navbar>
+
+<div class="outer">
+    <div class="container">
+        <div class="row">
+            <div></div>
+            <div class="offset-md-2 col-lg-5 col-md-7 offset-lg-4 offset-md-3">
+                <div class="panel border bg-white">
+                    <div class="panel-heading">
+                        <h3 class="pt-3 font-weight-bold">Please Enter In Your OTP</h3>
+                    </div>
+                    <div class="panel-body p-3">
+                        <form [formGroup]="loginForm">
+                            <div class="form-group pt-3" hidden="hidden">
+                                <div class="input-field">
+                                    <span class="fa fa-user p-2"></span>
+                                    <input formControlName="username" type="text" placeholder="Username" [(ngModel)]="loginForm.value.username">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group pt-3">
+                                <div class="input-field" [class.error]="loginForm.controls['otp'].dirty && loginForm.hasError('required', 'otp')">
+                                    <span class="fa fa-lock p-2"></span>
+                                    <input formControlName="otp" [type]="type" placeholder="OTP">
+                                    <span (click)="hideShowPass()" class="fa {{eyeIcon}}"></span>
+                                </div>
+                            </div>
+                            <small *ngIf="loginForm.controls['otp'].dirty && loginForm.hasError('required', 'otp')" class="text-danger">*otp Is Required</small>
+                            <button (click)="onLogin()" type="submit" class="btn btn-primary btn-block mt-4 w-100">Login</button>
+                        </form>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

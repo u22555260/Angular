@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-admin-sidebar></app-admin-sidebar>
+
+<div class="container">
+
+    <!-- ========================= Main ==================== -->
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+
+            </div>
+            <p style=" font-size: 35px;">Update Event Type</p>
+
+            <div class="user">
+                <img alt="">
+            </div>
+        </div>
+
+    <form [formGroup]="eventTypeForm" (ngSubmit)="onSubmit()">
+        <div class="order-form">
+            <h2>Update Event Type Details</h2>
+            
+            <label for="order-description">Event Description</label>
+            <input type="text" id="order-description" name="order-description" placeholder="Enter Event Type Name" formControlName="event_Description">
+
+            <label for="order-description">Event Capacity Status</label>
+            <input type="text" id="order-description" name="order-description" placeholder="Enter Event Type Description" formControlName="event_Capacity_Status">
+    
+            <input type="submit" value="Update Event Type">
+            <input type="button" value="Cancel" style="background-color: red;" routerLink="/event_type">
+        </div>
+    </form>
+
+    </div>
+</div>

@@ -1,0 +1,99 @@
+<div class="container mt-4">
+    <h2>New Employee Registration</h2>
+    <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" formControlName="name" required>
+        <div *ngIf="employeeForm.controls.name.errors?.required && employeeForm.controls.name.touched" class="text-danger">
+          Name is required.
+        </div>
+      
+      </div>
+      <div class="mb-3">
+        <label for="surname" class="form-label">Surname</label>
+        <input type="text" class="form-control" id="surname" formControlName="surname" required>
+        <div *ngIf="employeeForm.controls.surname.errors?.required && employeeForm.controls.surname.touched" class="text-danger">
+            Surname is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" formControlName="address" required></textarea>
+        <div *ngIf="employeeForm.controls.address.errors?.required && employeeForm.controls.address.touched" class="text-danger">
+            Address is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="emailAddress" class="form-label">Email Address</label>
+        <input type="text" class="form-control" id="emailAddress" formControlName="emailAddress" required>
+        <div *ngIf="employeeForm.controls.emailAddress.errors?.required && employeeForm.controls.emailAddress.touched" class="text-danger">
+            Email Address is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="contactNumber" class="form-label">Contact Number</label>
+        <input type="number" class="form-control" id="contactNumber" formControlName="contactNumber" required>
+        <div *ngIf="employeeForm.controls.contactNumber.errors?.required && employeeForm.controls.contactNumber.touched" class="text-danger">
+            Contact Number is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="idNumber" class="form-label">ID Number</label>
+        <input type="number" class="form-control" id="idNumber" formControlName="idNumber" required>
+        <div *ngIf="employeeForm.controls.idNumber.errors?.required && employeeForm.controls.idNumber.touched" class="text-danger">
+            ID Number is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="title" class="form-label">Title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" required>
+        <div *ngIf="employeeForm.controls.title.errors?.required && employeeForm.controls.title.touched" class="text-danger">
+            Title is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <input type="text" class="form-control" id="gender" formControlName="gender" required>
+        <div *ngIf="employeeForm.controls.gender.errors?.required && employeeForm.controls.gender.touched" class="text-danger">
+        Gender is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="employeeType" class="form-label">Employee Type</label>
+        <input type="text" class="form-control" id="employeeType" formControlName="employeeType" required>
+        <div *ngIf="employeeForm.controls.employeeType.errors?.required && employeeForm.controls.employeeType.touched" class="text-danger">
+            Employee Type is required.
+        </div>
+      </div>
+
+   
+
+      <div class="mb-3">
+        <label for="image" class="form-label">Upload Image</label>
+        <input type="file" class="form-control" id="image" formControlName="image" accept="image/*" required>
+        <div *ngIf="employeeForm.controls.image.errors?.required && employeeForm.controls.image.touched" class="text-danger">
+          Image is required.
+        </div>
+      </div>
+      
+
+      
+
+      <button type="submit" class="btn btn-success" [disabled]="employeeForm.invalid">Add Employee</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/courses">Cancel</button>
+
+    </form>
+   </div>

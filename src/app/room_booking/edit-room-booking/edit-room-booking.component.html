@@ -1,0 +1,48 @@
+<p>edit-room-booking works!</p>
+
+<div class="container mt-4">
+    <h2>Room Type</h2>
+    <form [formGroup]="roomBookingForm" (ngSubmit)="onSubmit()">
+
+
+      <div class="mb-3">
+        <label for="booking_Price" class="form-label">Booking Price</label>
+        <input type="number" class="form-control" id="booking_Price" formControlName="booking_Price" required>
+        <div *ngIf="roomBookingForm.controls.booking_Price.errors?.required && roomBookingForm.controls.booking_Price.touched" class="text-danger">
+          Booking Price is required.
+        </div>
+      </div>
+
+
+      <div class="mb-3">
+        <label for="booking_Status" class="form-label">Booking Status</label>
+        <input type="text" class="form-control" id="booking_Status" formControlName="booking_Status" required>
+        <div *ngIf="roomBookingForm.controls.booking_Status.errors?.required && roomBookingForm.controls.booking_Status.touched" class="text-danger">
+            Booking Status is required.
+        </div>
+      </div>
+
+    
+
+      <div class="mb-3">
+        <label for="check_In_Date" class="form-label">Check-In-Date</label>
+        <input type="text" class="form-control" id="check_In_Date" formControlName="check_In_Date" required>
+        <div *ngIf="roomBookingForm.controls.check_In_Date.errors?.required && roomBookingForm.controls.check_In_Date.touched" class="text-danger">
+            Check-In Date is required.
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label for="check_Out_Date" class="form-label">Check-Out Date</label>
+        <input type="text" class="form-control" id="check_Out_Date" formControlName="check_Out_Date" required>
+        <div *ngIf="roomBookingForm.controls.check_Out_Date.errors?.required && roomBookingForm.controls.check_Out_Date.touched" class="text-danger">
+            Check-Out Date is required.
+        </div>
+      </div>
+      
+      
+      <button type="submit" class="btn btn-success" [disabled]="roomBookingForm.invalid">Edit Room Booking</button>
+      <button type="submit" class="btn btn-secondary m-4" routerLink="/inventory_type">Cancel</button>
+
+    </form>
+   </div>

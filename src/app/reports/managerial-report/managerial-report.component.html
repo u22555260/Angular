@@ -1,0 +1,68 @@
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-admin-sidebar></app-admin-sidebar>
+
+<body class="container">
+<div>
+    <h1>Salary Report</h1>
+    <label>
+      Start Date:
+      <input id="datePicker" type="date" [(ngModel)]="startDate" [max]="today"/>
+    </label>
+    <label>
+      End Date:
+      <input id="datePicker2" type="date" [(ngModel)]="endDate" [max]="today"/>
+    </label>
+    <button class="btn btn-primary" (click)="fetchReport()">Get Report</button>
+    <button class="btn btn-danger" routerLink="/reports">Back</button>
+
+    <div id="reportTable">
+        <div *ngIf="reportData.length > 0">
+        <h2>Report Results</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Employee Name</th>
+                <th>Employee Type</th>
+                <th>Total Hours Worked</th>
+                <th>Shift Hours</th>
+                <th>Rate</th>
+                <th>Total Remuneration</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let report of reportData">
+                <td>{{ report.employee_Full_Name }}</td>
+                <td>{{ report.employee_Type }}</td>
+                <td>{{ report.total_Hours_Worked }}</td>
+                <td>{{ report.shift_Hours }}</td>
+                <td>R{{ report.rate }} Per Hour</td>
+                <td>R{{ report.total_Renumeration }}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="recentCustomers">
+            <div class="cardHeader">
+                <div class="chart-container">
+                    <div class="chart-item">
+                        <canvas baseChart 
+                            [data]="salaryData" 
+                            [type]="'bar'"
+                            [options]="salaryChartOptions"
+                        >
+                        </canvas> 
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" (click)="generatePDF()">Generete Report</button>
+        </div>
+        </div>
+        </div>
+    </div>  
+</body>

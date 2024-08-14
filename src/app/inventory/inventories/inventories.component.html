@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<app-admin-sidebar></app-admin-sidebar>
+
+<body>
+  <div class="main">
+    <div class="topbar">
+        <div class="toggle">
+
+        </div>
+        <p style=" font-size: 35px;">Inventory Homepage</p>
+
+        <div class="search">
+            <label>
+              <input type="search" [(ngModel)]="searchText" id="form1" class="form-control" placeholder="Search Inventory">
+            </label>
+        </div>
+
+        <div class="user">
+            <img alt="">
+        </div>
+    </div>
+
+
+    <div class="details">
+        <div class="recentOrders">
+            <div class="cardHeader">
+                <h2>Inventory</h2>
+                <a routerLink="/inventory/add" class="btn">Add Inventory</a>
+            </div>
+
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Min Stock</th>
+                  <th>Max Stock</th>
+                  <th>Condition</th>
+                  <th>Status</th>
+                  <th>Inventory Type</th>
+                  <th>Inventory Category</th>
+                  <th>Supplies Room(s)</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let inventory of inventories | filter: searchText">
+                  <td>{{ inventory.inventory_Name }}</td>
+                  <td>{{ inventory.minimum_Stock }}</td>
+                  <td>{{ inventory.maximum_Stock }}</td>
+                  <td>{{ inventory.inventory_Condition }}</td>
+                  <td>{{ inventory.inventory_Status }}</td>
+                  <td>{{ inventory.type_Name }}</td>
+                  <td>{{ inventory.category_Name }}</td>
+                  <td>{{ inventory.room }}</td>
+                  <td>
+                    <div class="button-container">
+                      <a  class="btn btn-primary" [routerLink]="['/update-inventory', inventory.inventoryId]">Edit</a>         
+                      <a  class="btn btn-danger" (click)="deleteInventory(inventory.inventoryId)">Delete</a>
+
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+        </div>
+
+        <div class="recentCustomers">
+            <div class="cardHeader">
+                <h2>Inventory Management</h2>
+            </div>
+
+            <table>
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/stock_take"><span class="btn">Stock Take</span> <br></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/inventory_category"><span class="btn">Inventory Category</span> <br></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/inventory_type"><span class="btn">Inventory Type</span> <br></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/inspection_item"><span class="btn">Inspection Item</span> <br></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/write_off"><span class="btn">Write Off</span> <br></a>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td width="60px">
+                        <span class="icon">
+                        </span>
+                    </td>
+                    <td>
+                        <a routerLink="/product"><span class="btn">Product Management</span> <br></a>
+                    </td>
+                </tr>
+
+            </table>
+        </div> 
+
+</div>

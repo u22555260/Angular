@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+    <app-menlyn-navbar></app-menlyn-navbar>
+    <app-admin-sidebar></app-admin-sidebar>
+    <div class="main">
+        <div class="topbar">
+            <div class="toggle">
+
+            </div>
+            <p style=" font-size: 35px;">Supplier Type Homepage</p>
+
+            <div class="search">
+                <label>
+                    <input type="text" [(ngModel)]="searchText" placeholder="Search Supplier Types">
+                </label>
+            </div>
+
+            <div class="user">
+                <img src="/assets/imgs/customer01.jpg" alt="">
+            </div>
+        </div>
+
+
+        <div class="cardBox">
+            <a class="btn-add" routerLink="/supplier_type/add">+</a>
+            <div class="card" *ngFor="let supType of supplierTypes | filter: searchText">
+                <div>
+                    <div class="numbers">{{supType.supplier_Type_Description}}</div>
+                    <div class="cardName"><a href="update-supplier-type.html" class="btn" style="background-color: rgb(45, 21, 179);" [routerLink]="['/update-supplier-type/', supType.supplierTypeId]">Update</a></div>
+                    <a  class="btn2" style="background-color: rgb(199, 24, 12);" (click)="deleteSupplierType(supType.supplierTypeId)">Delete</a>
+                </div>
+
+                <div class="iconBx">
+                </div>
+            </div> 
+        </div>
+
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <h2 class="heading">Are You Sure You Want To Delete This Supplier?</h2>
+                    <br>
+                    <button class="btn" onclick="confirmAction()" style="background-color: green;">Confirm</button>
+                    <button class="btn" onclick="closeModal()">Cancel</button>
+                    <br>
+                </div>
+            </div>
+            
+
+</div>
+
+</body>

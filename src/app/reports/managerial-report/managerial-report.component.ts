@@ -1,0 +1,245 @@
+import { Component, OnInit, ChangeDetectorRef, NgModule, ViewChild } from '@angular/core';
+import { Chart, ChartData, ChartOptions, registerables } from 'chart.js';
+import { DataService } from '../../services/data.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import pdfMake from 'pdfmake/build/pdfmake';
+import pdfFonts from 'pdfmake/build/vfs_fonts';
+import { Margins, TDocumentDefinitions } from 'pdfmake/interfaces';
+import { image } from '../../shared/imageData';
+import { BaseChartDirective } from 'ng2-charts';
+
+@Component({
+  selector: 'app-managerial-report',
+  templateUrl: './managerial-report.component.html',
+  styleUrl: './managerial-report.component.scss'
+})
+
+export class ManagerialReportComponent {
+  @ViewChild(BaseChartDirective) chart: BaseChartDirective | undefined;
+
+  today!: string;
+
+  startDate: Date | null = null;
+  endDate: Date | null = null;
+  reportData: any[] = [];
+
+  constructor(private dataService: DataService, private cdr: ChangeDetectorRef) {
+    (window as any).pdfMake.vfs = pdfFonts.pdfMake.vfs;
+  }
+
+  ngOnInit() {
+    const now = new Date();
+    this.today = now.toISOString().split('T')[0]; 
+  }
+
+  salaryData: ChartData<'bar'> = {
+    labels: [],
+    datasets: [
+      { data: [], label: 'Employee Hours Worked', backgroundColor:[this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(), this.random_rgba(),]},
+    ],
+  };
+
+  
+  salaryChartOptions: ChartOptions = {
+    responsive: true,
+    maintainAspectRatio: false, // Allows the chart to grow based on the container size
+    scales: {
+      x: { 
+        grid: { display: false },
+        title: {
+          display: true,
+          text: 'Employees',
+          font: {
+            size: 16
+          }
+        }
+      },
+      y: { 
+        ticks: {
+          stepSize: 1,
+          font: {
+            size: 14
+          }
+        },
+        title: {
+          display: true,
+          text: 'Hours Worked',
+          font: {
+            size: 16
+          }
+        },
+        grid: { display: false }
+      }
+    },
+    plugins: {
+      title: {
+        display: true,
+        text: 'Employee Hours Worked',
+        font: {
+          size: 20
+        }
+      },
+      legend: {
+        display: false // Hide legend if there's only one dataset
+      },
+      tooltip: {
+        enabled: true,
+        backgroundColor: 'rgba(0, 0, 0, 0.7)',
+        titleFont: {
+          size: 14
+        },
+        bodyFont: {
+          size: 12
+        }
+      }
+    }
+  };
+
+
+  random_rgba() {
+    var o = Math.round, r = Math.random, s = 255;
+    return 'rgba(' + o(r()*s) + ',' + o(r()*s) + ',' + o(r()*s) + ', 0.7)';
+  }
+
+  fetchReport() {
+    if (this.startDate && this.endDate) {
+      this.dataService.GetSalaryReport(this.startDate, this.endDate).subscribe(
+        (data) => {this.reportData = data, this.updateChartData()},
+        (error) => console.error('Error Fetching Report', error)
+      );
+    } else {
+      console.error('Start Date And End Date Are Required')
+    }
+  }
+
+  updateChartData() {
+    this.salaryData.labels = this.reportData.map(item => item.employee_Full_Name);
+    this.salaryData.datasets[0].data = this.reportData.map(item => item.total_Hours_Worked);
+
+    this.chart?.update();
+  }
+
+  extractTableData() {
+    const table = document.getElementById('reportTable') as HTMLTableElement;
+  
+    const headers = Array.from(table.querySelectorAll('thead th')).map(th => (th as HTMLElement).innerText);
+    const rows = Array.from(table.querySelectorAll('tbody tr')).map(tr =>
+      Array.from(tr.querySelectorAll('td')).map(td => (td as HTMLElement).innerText)
+    );
+    return { headers, rows };
+  }
+
+  chartImage: string | null = null;
+
+  generatePDF() {
+    const { headers, rows } = this.extractTableData();
+    const date = document.getElementById('datePicker') as HTMLInputElement;
+    const date2 = document.getElementById('datePicker2') as HTMLInputElement;
+    const dateGenerated = new Date().toLocaleString();
+    const generatedBy = localStorage.getItem("username");
+  
+    // Convert the chart to a Base64 image
+    const chartImage = this.chart?.chart?.toBase64Image();
+
+    const content: any[] = [
+        {
+            text: 'Salary Report For ' + date.value + " To " + date2.value,
+            style: 'title',
+        },
+        {
+            columns: [
+                {
+                    image: image, // Replace with actual logo path if necessary
+                    width: 100
+                },
+                {
+                    text: [
+                        { text: `Date Generated: ${dateGenerated}\n`, style: 'headerRight' },
+                        { text: `Generated By: ${generatedBy}`, style: 'headerRight' }
+                    ],
+                    alignment: 'right'
+                }
+            ],
+            margin: [0, 0, 0, 10] as [number, number, number, number]
+        },
+        {
+            table: {
+                headerRows: 1,
+                body: [
+                    headers.map(header => ({ text: header, style: 'header' })),
+                    ...rows.map(row => row.map(cell => ({ text: cell, style: 'cell' })))
+                ]
+            },
+            layout: 'striped'
+        }
+    ];
+
+    // Add the chart image to the content if it exists
+    if (chartImage) {
+        content.push({
+            image: chartImage,
+            width: 500,
+            alignment: 'center',
+            margin: [0, 20, 0, 0]
+        });
+    }
+
+    const docDefinition: TDocumentDefinitions = {
+        background: {
+            canvas: [
+                {
+                    type: 'rect',
+                    x: 0,
+                    y: 0,
+                    w: 595.28,  // A4 width in points (72 points/inch * 8.27 inches)
+                    h: 841.89,  // A4 height in points (72 points/inch * 11.69 inches)
+                    color: '#E0E0E0'  // Light gray background
+                }
+            ]
+        },
+        content: content,
+        footer: function (currentPage: number, pageCount: number) {
+            return {
+                columns: [
+                    {
+                        text: 'Menlyn Mews',
+                        alignment: 'center'
+                    },
+                    {
+                        text: `Page ${currentPage} of ${pageCount}`,
+                        alignment: 'right'
+                    }
+                ],
+                margin: [0, 10, 0, 0] as [number, number, number, number]
+            };
+        },
+        styles: {
+            title: {
+                fontSize: 18,
+                bold: true,
+                alignment: 'center',
+                margin: [0, 20, 0, 20] as [number, number, number, number]
+            },
+            header: {
+                bold: true,
+                fontSize: 13,
+                color: '#33331a'
+            },
+            cell: {
+                bold: true,
+                margin: [0, 5, 0, 5] as [number, number, number, number]
+            },
+            headerRight: {
+                fontSize: 10,
+                margin: [0, 0, 10, 0] as [number, number, number, number]
+            }
+        }
+    };
+
+    pdfMake.createPdf(docDefinition).open();
+}
+
+
+}

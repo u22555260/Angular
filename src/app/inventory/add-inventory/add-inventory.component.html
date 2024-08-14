@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrator Dashboard</title>
+    <!-- ======= Styles ====== -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+
+  <app-menlyn-navbar></app-menlyn-navbar>
+  <app-admin-sidebar></app-admin-sidebar>
+
+  <div class="container">
+    <div class="main">
+      <div class="topbar">
+          <div class="toggle">
+
+          </div>
+          <p style=" font-size: 35px;">Add Inventory</p>
+
+          <div class="user">
+              <img alt="">
+          </div>
+      </div>
+
+      
+      <div class="order-form">
+        <h2>Inventory Details</h2>
+          <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="inventory_Name" class="form-label">Inventory Name</label>
+              <input type="text" class="form-control" id="inventory_Name" formControlName="inventory_Name" required>
+              <div *ngIf="inventoryForm.controls.inventory_Name.errors?.required && inventoryForm.controls.inventory_Name.touched" class="text-danger">
+               Inventory Name is required.
+              </div>
+            </div>
+            
+            <div class="mb-3">
+              <label for="minimum_Stock" class="form-label">Minimum Stock</label>
+              <input type="number" class="form-control" id="minimum_Stock" formControlName="minimum_Stock" required>
+              <div *ngIf="inventoryForm.controls.minimum_Stock.errors?.required && inventoryForm.controls.minimum_Stock.touched" class="text-danger">
+                Minimum Stock take is required.
+              </div>
+            </div>
+      
+      
+            <div class="mb-3">
+              <label for="maximum_Stock" class="form-label">Maximum Stock</label>
+              <input type="number" class="form-control" id="maximum_Stock" formControlName="maximum_Stock" required>
+              <div *ngIf="inventoryForm.controls.maximum_Stock.errors?.required && inventoryForm.controls.maximum_Stock.touched" class="text-danger">
+                  Maximum Stock take is required.
+              </div>
+          </div>
+          
+      
+            <div class="mb-3">
+              <label for="inventory_Condition" class="form-label">Inventory Condition</label>
+              <input type="text" class="form-control" id="inventory_Condition" formControlName="inventory_Condition" required>
+              <div *ngIf="inventoryForm.controls.inventory_Condition.errors?.required && inventoryForm.controls.inventory_Condition.touched" class="text-danger">
+                Inventory condition is required.
+              </div>
+            </div>
+      
+            <div class="mb-3">
+              <label for="inventory_Status" class="form-label">Inventory Status</label>
+              <input type="text" class="form-control" id="inventory_Status" formControlName="inventory_Status" required>
+              <div *ngIf="inventoryForm.controls.inventory_Status.errors?.required && inventoryForm.controls.inventory_Status.touched" class="text-danger">
+                  Inventory Status is required.
+              </div>
+            </div>
+      
+      
+            <label for="supplier">Inventory Type</label>
+            <select id="supplier" name="supplier" formControlName="inventoryTypeId">
+                <option *ngFor="let invType of inventoryTypes" [value]="invType.inventoryTypeId">{{ invType.inventory_Type_Name }}</option>
+            </select>
+      
+      
+            <label for="supplier">Inventory Category</label>
+            <select id="test" name="supplier" formControlName="inventoryCategoryId">
+                <option *ngFor="let invCat of inventoryCategories" [value]="invCat.inventoryCategoryId">{{ invCat.inventory_Category_Name }}</option>
+            </select>
+      
+            <label for="supplier">Supplies Which Room?</label>
+            <select id="supplier" name="supplier" formControlName="roomId">
+                <option *ngFor="let room of rooms" [value]="room.roomId">{{ room.room_Number }}</option>
+            </select>
+      
+        
+      
+            <button type="submit" class="btn btn-success" [disabled]="inventoryForm.invalid">Add New Inventory</button>
+            <button type="submit" class="btn btn-secondary m-4" routerLink="/clients">Cancel</button>
+          </form>
+      </div>
+  </div>
+  </div>
+</body>
+
+
+

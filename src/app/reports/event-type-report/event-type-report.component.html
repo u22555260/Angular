@@ -1,0 +1,42 @@
+<div class="container">
+
+    
+    <h2>Event Report Page</h2>
+    
+    <div class="date-range">
+      <label for="startDate">Start Date: </label>
+      <input id="startDate" type="date" [(ngModel)]="startDate" (change)="onDateChange()">
+      
+      <label for="endDate">End Date: </label>
+      <input id="endDate" type="date" [(ngModel)]="endDate" (change)="onDateChange()">
+    </div>
+  
+    <br>
+    <button class="btn btn-primary" (click)="generatePDF()">Generate Event Report</button>
+    <button class="btn btn-danger" routerLink="/reports">Back</button>
+
+    <div id="reportTable" style="margin-top: 20px;">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Event ID</th>
+            <th>Event Date</th>
+            <th>Event Price</th>
+            <th>Event Type ID</th>
+            <th>Event Description</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of filteredEvents">
+            <td>{{ event.EventID }}</td>
+            <td>{{ event.EventDate }}</td>
+            <td>{{ event.EventPrice }}</td>
+            <td>{{ event.EventTypeID }}</td>
+            <td>{{ event.EventDescription }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  

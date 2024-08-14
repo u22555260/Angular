@@ -1,0 +1,16 @@
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let employee of employees">
+      <div class="grid-item">
+        <h5>{{ employee.employee_Name }}</h5>
+        <h6>Surname: {{ employee.employee_Surname }}</h6>
+        <p>{{ employee.employee_Address }}</p>           
+        <div class="button-container">
+          <a href="#" class="btn btn-danger float-end" (click)="deleteEmployee(employee.id)">Delete</a>
+          <a (click)="editEmployee(employee.id)" class="btn btn-primary mx-3">Edit</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
